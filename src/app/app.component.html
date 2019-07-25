@@ -1,3 +1,140 @@
-
-
-<app-oferta-preciso></app-oferta-preciso>
+<div class="page">
+  <div class="container">
+    <div class="row pad-bot-40">
+      <div class="col-12">
+        <div class="titularTipoUno">{{ titulo }}</div>
+      </div>
+    </div>
+    <form name="formCredito" #formCredito="ngForm" (ngSubmit)="onSubmit(formCredito)">
+      <div class="row pad-bot-40">
+        <div class="col-12 col-sm-8 offset-sm-2">
+          <div class="contenedor-bar">
+            <ul class="progressbar">
+              <li class="activeted">
+                <span>Accede</span>
+              </li>
+              <li class="activeted">
+                <span>Aprueba</span>
+              </li>
+              <li class="">
+                <span>Recibe</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-bot-40">
+        <div class="col-10 offset-1 p-o">
+          <div class="row">
+            <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3 pad-top-20">
+              <div class="row">
+                <div class="col-12 pad-bot-20">
+                  <div class="titularTipoCuatro color-gris">Resumen del crédito</div>
+                </div>
+              </div>
+              <div class="row">
+                <table class="tabla">
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Monto solicitado</td>
+                    <td class="textoTipoDos">USD {{ creditoOperacion.monto | number: '1.0-0' }}</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Plazo</td>
+                    <td class="textoTipoDos">{{ creditoOperacion.plazo }} meses</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Tasa de interés nominal</td>
+                    <td class="textoTipoDos">{{ creditoOperacion.tasaNominal | number: '1.2-2' }} %</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Tasa de interés efectiva</td>
+                    <td class="textoTipoDos">{{ creditoOperacion.tasaEfectivo | number: '1.2-2' }} %</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Contribución de Solca</td>
+                    <td class="textoTipoDos">USD {{ creditoOperacion.valorSolca | number: '1.2-2' }}</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Seguro de desgravamen</td>
+                    <td class="textoTipoDos">USD {{ creditoOperacion.valorSeguroDesgravamen | number: '1.2-2' }}
+                      mensuales</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Sistema de amortización</td>
+                    <td class="textoTipoDos">{{ creditoOperacion.tipoTabla === 'FRA' ? 'Francés' : 'Alemán' }}</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Número de cuotas</td>
+                    <td class="textoTipoDos">{{ creditoOperacion.numeroCuotas }} cuotas</td>
+                  </tr>
+                  <tr class="border_bottom">
+                    <td class="textoTipoUno border_rigth">Valor de la cuota</td>
+                    <td class="textoTipoDos">USD {{ cuotaTotal | number: '1.2-2' }}</td>
+                  </tr>
+                  <tr>
+                    <td class="textoTipoUno border_rigth">Monto a recibir</td>
+                    <td class="textoTipoDos">USD {{ creditoOperacion.valorRecibir | number: '1.2-2' }}</td>
+                  </tr>
+                </table>
+              </div>
+              <div class="row">
+                <div class="titularSeguro color-gris txt-left">Esta oferta de crédito incluye seguro de desgravamen,
+                  desempleo y/o incapacidad total y permanente. En
+                  caso de que desees contratar la póliza con otra aseguradora de tu preferencia, acércate a la agencia
+                  más cercana para continuar con esta oferta.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-bot-40">
+        <div class="col-10 offset-1 p-o">
+          <div class="row">
+            <div class="col-12">            
+              <div class="row">
+                <div class="col-12 col-sm-8 offset-sm-2 col-lg-6 offset-lg-3">
+                  <div class="checkTipoDos aceptacionCOntrato">                
+                    <input class="styled-checkbox" id="contrato" name="contrato" type="checkbox"
+                      [(ngModel)]="aceptacionContrato" required (change)="descargaDocumento($event)"
+                      [checked]="aceptacionContrato">
+                    <label class="text" for="contrato">
+                      <span class="descargarOfertaObligatorio textoBold" >Haz clic aquí para descargar tu contrato (obligatorio):</span>
+                      <br><br>
+                      Aceptación de crédito, Pagaré y tabla de amortización. Autorización de gastos de
+                      cobranza, liquidación y autorización de débito.
+                      Aceptación de seguros.</label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row pad-bot-40">
+        <div class="col-10 col-md-8 col-lg-6 offset-1 offset-md-2 offset-lg-3">
+          <div class="general-error caja-error" *ngIf="mensajeError">
+          </div>
+          <div class="general-error caja-adver" *ngIf="mensajeAdvertencia">
+          </div>
+          <button class="boton-amarillo-secundario flot-left-bnt" type="button" onclick="history.back()">
+            Regresar
+          </button>
+          <button id="lock" class="boton-amarillo flot-right-bnt" type="submit" [disabled]="formCredito.invalid">
+            Siguiente
+            <div class="trig-uno"></div>
+            <div class="trig-dos"></div>
+          </button>
+        </div>
+      </div>
+      <div class="row pad-bot-40">
+        <div class="col-10 offset-1 p-o">
+          <div style="width: 100%">
+            <object [data]="sanitizer.bypassSecurityTrustResourceUrl(pdfString)" width="100%" height="400px"
+              type='application/pdf'></object>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

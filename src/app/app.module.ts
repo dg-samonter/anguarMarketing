@@ -8,7 +8,7 @@ import { OfertaPrecisoComponent } from './oferta-preciso/oferta-preciso.componen
 import { FormsModule }   from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSelectModule,MatFormFieldModule, MatInputModule } from '@angular/material';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +21,7 @@ import { MatSelectModule,MatFormFieldModule, MatInputModule } from '@angular/mat
     MatInputModule,
     MatFormFieldModule,
     MatSelectModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent],
