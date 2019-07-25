@@ -1,0 +1,35 @@
+<div class="page">
+  <div class="container">
+    <form name="formCredito" #formCredito="ngForm" (ngSubmit)="onSubmit(formCredito)">
+      <div class="col-10 col-sm-6 col-lg-4 offset-1 offset-lg-4 offset-sm-3">
+        <div class="row">
+          <div class="col-sm-8">
+            <label for="cbxCuentas01">Escoge tu cuenta para el débito</label>
+            <mat-form-field class="combo-box">
+              <mat-select placeholder="Selecciona una opción..." id="cbxCuentas02" name="cbxCuentas02"
+                [(ngModel)]="cuentaDesembolso" required>
+                <mat-option *ngFor="let cuenta of cuentas" [value]="cuenta.numeroIdentificador">{{
+                              cuenta.numeroPublico }}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="col-sm-4">
+            <label for="diaDebito1">Día de débito</label>
+            <mat-form-field class="combo-box">
+              <mat-select>
+                <mat-option *ngFor="let day of days" [value]="day.value">
+                  {{day.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </form>
+
+  </div>
+</div>
