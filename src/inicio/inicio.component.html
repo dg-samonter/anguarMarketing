@@ -1,34 +1,14 @@
 <div class="page">
   <div class="container">
     <div class="row pad-bot-20">
-      <div class="col-12 col-lg-10 offset-lg-1">
-        <div class="titularTipoUno txt-left">Lo que necesitas, ¡solicítalo en línea ahora!</div>
+      <div class="col-12 col-lg-12">
+        <div class="titularTipoUno ">Lo que necesitas, ¡solicítalo en línea ahora!</div>
       </div>
     </div>
     <div class="row">
       <div class="col-12 col-lg-10 offset-lg-1" *ngIf="flujos != null && flujos.length > 0">
-        <div class="row">
-          <div class="col-12 col-sm-4 mar-bot-20" *ngFor="let flujo of flujos">
-            <div class="caja-informativa-trans" *ngIf="flujo.codigoFlujo == flujoVinculacion">
-              <img style="width: 100%;" [src]="flujo.urlImagenFlujo">
-              <div class="titularTipoDos txt-left mar-top-bot-20">
-                {{ flujo.nombreFlujo }}
-              </div>
-              <div class="titularTipoCuatro txt-left mar-top-bot-20">
-                Tu cuenta de ahorros en 10 minutos.
-              </div>
-              <ul class="listadoTipoUno pad-lef-20 mar-bot-40">
-                <li>Sin monto de apertura.</li>
-                <li>Accede a tu dinero por nuestros canales electrónicos.</li>
-                <li>Haz tus compras con tu tarjeta de débito.</li>
-              </ul>
-              <button id="btnflujoVinculacion" class="boton-amarillo" type="button" (click)="redireccionarLogin(flujoVinculacion);">
-                Solicitar
-                <div class="trig-uno"></div>
-                <div class="trig-dos"></div>
-              </button>
-              <div class="clean"></div>
-            </div>
+        <div class="row centerContent">
+          <div class="col-12 col-sm-4 mar-bot-20" *ngFor="let flujo of flujos">           
             <div class="caja-informativa-trans" *ngIf="flujo.codigoFlujo == flujoTarjeta">
               <img style="width: 100%;" [src]="flujo.urlImagenFlujo">
               <div class="titularTipoDos txt-left mar-top-bot-20">

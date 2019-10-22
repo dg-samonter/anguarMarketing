@@ -56,6 +56,9 @@ export class InicioComponent implements OnInit {
         this.router.navigate([CONSTANTES_CORE.URL_HTML.ERROR_500.URL]);
       }
       this.flujos = data.listaFlujos;
+      var temp = this.flujos.find(elemnt => elemnt.codigoFlujo == this.flujoVinculacion)
+      var index = this.flujos.indexOf(temp);
+      this.flujos.splice(index,1);
     });
   }
 
